@@ -17,6 +17,10 @@ body {
   background-image: var(--slot4-body-gradient) !important;
 }
 
+.font-serif {
+  font-family: Georgia, "Times New Roman", serif !important;
+}
+
 ::selection {
   background: color-mix(in oklab, var(--slot4-accent-fill) 22%, transparent);
   color: var(--slot4-page-text);
@@ -37,8 +41,28 @@ body {
 
 .article-content h2 {
   color: var(--slot4-accent);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.35rem, 5vw, 4rem);
+  font-weight: 400;
+  line-height: 1;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
 }
 
 .article-content a {
   color: var(--slot4-accent-fill);
+}
+
+.article-content p {
+  margin-bottom: 1.35rem;
+}
+
+.article-content blockquote {
+  border-top: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  line-height: 1.2;
+  margin: 2.5rem 0;
+  padding: 2rem 0;
 }
