@@ -126,7 +126,7 @@ export function TaskDetailView({ task, post, related, comments = [] }: { task: T
 function BackLink({ task }: { task: TaskKey }) {
   const taskConfig = getTaskConfig(task)
   return (
-    <Link href={taskConfig?.route || '/'} className="inline-flex items-center gap-2 rounded-full border border-[var(--editable-border)] bg-white/70 px-4 py-2 text-sm font-black">
+    <Link href={taskConfig?.route || '/'} className="inline-flex items-center gap-2 border border-[var(--editable-border)] bg-white/70 px-4 py-2 text-xs font-black uppercase tracking-[0.18em]">
       <ArrowLeft className="h-4 w-4" /> Back to {taskConfig?.label || 'posts'}
     </Link>
   )
@@ -135,16 +135,35 @@ function BackLink({ task }: { task: TaskKey }) {
 function ArticleDetail({ post, related, comments }: { post: SitePost; related: SitePost[]; comments: Array<{ id: string; name: string; comment: string; createdAt: string }> }) {
   const images = getImages(post)
   return (
-    <section className="mx-auto grid max-w-[var(--editable-container)] gap-8 px-4 py-10 sm:px-6 lg:grid-cols-[minmax(0,1fr)_350px] lg:px-8 lg:py-16">
-      <article className="min-w-0 rounded-[2.7rem] border border-[var(--editable-border)] bg-[var(--detail-surface)] p-5 shadow-[0_30px_90px_rgba(15,23,42,0.09)] sm:p-8 lg:p-12">
-        <BackLink task="article" />
-        <p className="mt-8 text-xs font-black uppercase tracking-[0.28em] text-[var(--detail-accent)]">{categoryOf(post, 'Article')}</p>
-        <h1 className="mt-4 text-4xl font-black leading-[0.98] tracking-[-0.07em] sm:text-5xl lg:text-7xl">{post.title}</h1>
-        {images[0] ? <img src={images[0]} alt="" className="mt-8 max-h-[620px] w-full rounded-[2rem] object-cover" /> : null}
-        <BodyContent post={post} />
-        <EditableComments slug={post.slug} comments={comments} />
-      </article>
-      <RelatedPanel task="article" post={post} related={related} />
+    <section className="mx-auto max-w-[var(--editable-container)] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+      <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_320px]">
+        <article className="min-w-0">
+          <div className="border-b border-[var(--detail-text)] pb-8">
+            <BackLink task="article" />
+            <p className="mt-8 text-[11px] font-black uppercase tracking-[0.28em] text-[var(--detail-accent)]">{categoryOf(post, 'Article')}</p>
+            <h1 className="mt-5 max-w-4xl font-serif text-6xl font-normal leading-[0.96] sm:text-7xl lg:text-8xl">{post.title}</h1>
+           
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link href="/article" className="inline-flex items-center gap-2 border border-[var(--detail-text)] bg-[var(--detail-text)] px-5 py-3 text-xs font-black uppercase tracking-[0.2em] text-[var(--detail-bg)]">All articles <ArrowLeft className="h-4 w-4 rotate-180" /></Link>
+              <Link href="/search" className="inline-flex items-center gap-2 border border-[var(--editable-border)] bg-white px-5 py-3 text-xs font-black uppercase tracking-[0.2em]">Search archive <ExternalLink className="h-4 w-4" /></Link>
+              <a href={`mailto:?subject=${encodeURIComponent(post.title)}&body=${encodeURIComponent(`Read this article: ${SITE_CONFIG.baseUrl.replace(/\/$/, '')}${buildPostUrl('article', post.slug)}`)}`} className="inline-flex items-center gap-2 border border-[var(--editable-border)] bg-white px-5 py-3 text-xs font-black uppercase tracking-[0.2em]">Share <ExternalLink className="h-4 w-4" /></a>
+            </div>
+          </div>
+
+          {images[0] ? <img src={images[0]} alt="" className="mt-10 max-h-[680px] w-full object-cover" /> : null}
+          <BodyContent post={post} />
+          <EditableComments slug={post.slug} comments={comments} />
+        </article>
+
+        <aside className="space-y-8 lg:sticky lg:top-28 lg:self-start">
+          {images[1] ? <img src={images[1]} alt="" className="aspect-[4/5] w-full object-cover" /> : null}
+          <div className="border-y border-current py-6">
+            <h2 className="font-serif text-3xl font-normal">Related reading</h2>
+            <p className="mt-3 text-sm leading-7 opacity-65">Continue with articles from the same editorial surface.</p>
+          </div>
+          <RelatedPanel task="article" post={post} related={related} compact />
+        </aside>
+      </div>
     </section>
   )
 }
@@ -419,11 +438,11 @@ function RelatedCard({ task, post }: { task: TaskKey; post: SitePost }) {
 
 function EditableComments({ slug, comments }: { slug: string; comments: Array<{ id: string; name: string; comment: string; createdAt: string }> }) {
   return (
-    <section className="mt-10 rounded-[2rem] border border-[var(--editable-border)] bg-white/70 p-5">
-      <div className="flex items-center gap-2 text-lg font-black"><MessageCircle className="h-5 w-5" /> Comments</div>
+    <section className="mt-12 border-t border-[var(--editable-border)] bg-white/45 p-5">
+      <div className="flex items-center gap-2 font-serif text-3xl font-normal"><MessageCircle className="h-5 w-5" /> Comments</div>
       <div className="mt-5 grid gap-3">
         {comments.slice(0, 5).map((comment) => (
-          <div key={comment.id} className="rounded-2xl border border-[var(--editable-border)] bg-white p-4">
+          <div key={comment.id} className="border border-[var(--editable-border)] bg-white p-4">
             <p className="text-sm font-black">{comment.name}</p>
             <p className="mt-2 text-sm leading-6 opacity-70">{comment.comment}</p>
           </div>

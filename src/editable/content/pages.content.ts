@@ -3,31 +3,31 @@ import { slot4BrandConfig } from '@/editable/theme/brand.config'
 export const pagesContent = {
   home: {
     metadata: {
-      title: 'Stories, visuals, and discoverable content',
-      description: 'Explore articles, images, listings, and curated posts through a cleaner reading-first experience.',
-      openGraphTitle: 'Stories, visuals, and discoverable content',
-      openGraphDescription: 'Discover articles, visual posts, and connected content through a calmer reading-first experience.',
-      keywords: ['story platform', 'article site', 'visual content', 'content discovery'],
+      title: 'Articles, essays, and useful reading',
+      description: 'Explore thoughtful articles, editorial notes, and curated reading in a calm magazine-style experience.',
+      openGraphTitle: 'Articles, essays, and useful reading',
+      openGraphDescription: 'Discover article-first stories through a calmer magazine-style reading experience.',
+      keywords: ['article site', 'editorial stories', 'online magazine', 'reading platform'],
     },
     hero: {
-      badge: 'Latest stories and visuals',
-      title: ['A thoughtful home for', 'stories, visuals, and discovery.'],
-      description: 'Explore fresh articles, image-led posts, and discoverable content across the platform through a calmer and clearer browsing experience.',
+      badge: 'Independent article journal',
+      title: ['Read sharper ideas', 'without the noise.'],
+      description: 'Browse thoughtful articles, practical explainers, and editorial notes in a calm layout built for focused reading.',
       primaryCta: { label: 'Read latest stories', href: '/article' },
       secondaryCta: { label: 'Explore visuals', href: '/image' },
       searchPlaceholder: 'Search stories, visuals, listings, and more',
       focusLabel: 'Focus',
       featureCardBadge: 'latest cover rotation',
-      featureCardTitle: 'Latest posts shape the visual identity of the homepage.',
-      featureCardDescription: 'Recent images and stories stay at the center of the experience without changing any core platform behavior.',
+      featureCardTitle: 'New articles set the tone of the publication.',
+      featureCardDescription: 'Fresh writing, clean cards, and measured spacing keep the homepage useful without feeling crowded.',
     },
     intro: {
       badge: 'About the platform',
-      title: 'Built for reading, browsing, and connecting different kinds of content.',
+      title: 'Built for readers who want useful articles, not clutter.',
       paragraphs: [
-        'This site brings together article-style reading, visual browsing, and structured discovery so visitors can move naturally between different content types.',
-        'Instead of separating stories, visuals, and supporting resources into disconnected surfaces, the platform keeps them connected in one place with consistent navigation and easier exploration.',
-        'Whether someone starts with a story, an image-led post, a listing, or a resource page, they can keep discovering related content without friction.',
+        'This site gives articles room to breathe: large headlines, quiet summaries, clear categories, and reading paths that do not fight for attention.',
+        'The layout is designed around scanning first and reading second, so visitors can find a strong headline quickly and then settle into the article.',
+        'Every page keeps the same editorial rhythm, from the homepage to search, article archives, and the detail page.',
       ],
       sideBadge: 'At a glance',
       sidePoints: [
@@ -41,8 +41,8 @@ export const pagesContent = {
     },
     cta: {
       badge: 'Start exploring',
-      title: 'Explore articles, visuals, and resources through one connected experience.',
-      description: 'Move between articles, image-led posts, listings, and resources through one clearer and more connected visual system.',
+      title: 'Explore the latest articles in one calm reading space.',
+      description: 'Move from feature stories to practical posts through one clear editorial system.',
       primaryCta: { label: 'Browse Articles', href: '/article' },
       secondaryCta: { label: 'Contact Sales', href: '/contact' },
     },
@@ -54,10 +54,11 @@ export const pagesContent = {
   about: {
     badge: 'Our Story',
     title: 'A calmer, clearer way to explore content.',
-    description: `${slot4BrandConfig.siteName} is built to make long-form reading, visual discovery, and supporting resources feel like one unified experience.`,
+    description: `${slot4BrandConfig.siteName} is an article-first publication built for calm discovery, sharp headlines, and useful reading.`,
     paragraphs: [
-      'Instead of splitting everything into disconnected pages, the platform keeps related content easy to move through and easy to understand.',
-      'Whether someone starts with an article, listing, image post, or resource page, they can continue exploring without losing context.',
+      'We publish and organize articles so readers can move from a question to an answer, from a headline to a fuller idea, and from one useful post to the next without friction.',
+      'The experience is deliberately quiet: warm paper tones, editorial spacing, strong hierarchy, and no unnecessary visual noise around the reading task.',
+      'Writers get a simple publishing surface, and readers get pages that feel composed, legible, and easy to revisit.',
     ],
     values: [
       {
@@ -66,7 +67,7 @@ export const pagesContent = {
       },
       {
         title: 'Connected content surfaces',
-        description: 'Articles, visual posts, listings, resources, and profiles stay connected so discovery feels natural across the site.',
+        description: 'Article lists, search, related posts, and detail pages share one editorial system so discovery feels natural across the site.',
       },
       {
         title: 'Simple and trustworthy',
@@ -76,8 +77,8 @@ export const pagesContent = {
   },
   contact: {
     eyebrow: `Contact ${slot4BrandConfig.siteName}`,
-    title: 'A support page that matches the product, not a generic contact form.',
-    description: 'Tell us what you are trying to publish, fix, or launch. We will route it through the right lane instead of forcing every request into the same support bucket.',
+    title: 'Send a note about articles, publishing, or partnerships.',
+    description: 'Tell us what you want to publish, fix, sponsor, or ask about. The form is tuned for article submissions, editorial support, and publication questions.',
     formTitle: 'Send a message',
   },
 
@@ -88,8 +89,8 @@ export const pagesContent = {
     },
     hero: {
       badge: 'Search the archive',
-      title: 'Find stories, listings, visuals, and resources faster.',
-      description: 'Use keywords, categories, and content types to discover posts from every active section of the site.',
+      title: 'Search the article archive with less friction.',
+      description: 'Use keywords, categories, and content type filters to find useful posts, essays, and editorial notes quickly.',
       placeholder: 'Search by keyword, topic, category, or title',
     },
     resultsTitle: 'Latest searchable content',
@@ -101,13 +102,13 @@ export const pagesContent = {
     },
     locked: {
       badge: 'Creator access',
-      title: 'Login to create new content.',
-      description: 'Use your account to open the publishing workspace and create posts for the active sections of this site.',
+      title: 'Login to create a new article.',
+      description: 'Use your account to open the publishing workspace and draft article content for the site.',
     },
     hero: {
       badge: 'Publishing workspace',
-      title: 'Create content for every active section.',
-      description: 'Choose the content type, add details, and prepare a clean post with images, links, summary, and body content.',
+      title: 'Draft a polished article submission.',
+      description: 'Add a headline, category, summary, image, and body copy. The form keeps the writing visible and readable while you work.',
     },
     formTitle: 'Content details',
     submitLabel: 'Submit content',
@@ -117,8 +118,8 @@ export const pagesContent = {
     login: {
       metadataDescription: 'Login page for this site.',
       badge: 'Member access',
-      title: 'Welcome back to your publishing space.',
-      description: 'Login to continue browsing, managing submissions, and creating new content from your account.',
+      title: 'Welcome back to the reading desk.',
+      description: 'Login to continue creating article drafts and managing your local publishing session.',
       formTitle: 'Login',
       submitLabel: 'Continue',
       noAccount: 'No account matched these details. Create an account first, then login.',
@@ -128,8 +129,8 @@ export const pagesContent = {
     signup: {
       metadataDescription: 'Signup page for this site.',
       badge: 'Site access',
-      title: 'Create your account and start publishing.',
-      description: 'Create an account to access the publishing workspace, save details, and submit content through the site.',
+      title: 'Create your writer account.',
+      description: 'Create an account to access the article workspace, keep your name on drafts, and submit content through the site.',
       formTitle: 'Create account',
       submitLabel: 'Create account',
       passwordShort: 'Use at least 4 characters for the password.',
