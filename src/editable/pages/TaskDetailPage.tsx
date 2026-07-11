@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import type { CSSProperties } from 'react'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, Bookmark, Building2, Camera, CheckCircle2, Download, ExternalLink, FileText, Globe2, Mail, MapPin, MessageCircle, Phone, Tag, UserRound } from 'lucide-react'
 import { buildPostMetadata, buildTaskMetadata } from '@/lib/seo'
@@ -7,7 +6,7 @@ import { buildPostUrl, fetchArticleComments, fetchTaskPostBySlug, fetchTaskPosts
 import { getTaskConfig, SITE_CONFIG, type TaskKey } from '@/lib/site-config'
 import type { SitePost } from '@/lib/site-connector'
 import { EditableSiteShell } from '@/editable/shell/EditableSiteShell'
-import { getVisualPreset, visualSystem } from '@/editable/theme/visual-system'
+import { Ads } from '@/lib/ads'
 
 export const revalidate = 3
 
@@ -105,12 +104,12 @@ const mapSrcFor = (post: SitePost) => {
 }
 
 export function TaskDetailView({ task, post, related, comments = [] }: { task: TaskKey; post: SitePost; related: SitePost[]; comments?: Array<{ id: string; name: string; comment: string; createdAt: string }> }) {
-  const preset = getVisualPreset(visualSystem.recommendedPreset as any)
-  const detailVars = { '--detail-bg': preset.colors.background, '--detail-text': preset.colors.foreground, '--detail-surface': preset.colors.surface, '--detail-accent': preset.colors.accent } as CSSProperties
-
   return (
     <EditableSiteShell>
-      <main style={detailVars} className="bg-[var(--detail-bg)] text-[var(--detail-text)]">
+      <main className="bg-[var(--slot4-page-bg)] text-[var(--slot4-page-text)] [--detail-accent:var(--slot4-accent)] [--detail-bg:var(--slot4-page-bg)] [--detail-surface:var(--slot4-panel-bg)] [--detail-text:var(--slot4-page-text)]">
+        <div className="mx-auto flex max-w-[var(--editable-container)] justify-center px-4 py-6 sm:px-6 lg:justify-end lg:px-8">
+          <Ads slot="sidebar" size="mpu" showLabel eager className="w-full max-w-[336px]" />
+        </div>
         {task === 'listing' ? <ListingDetail post={post} related={related} /> : null}
         {task === 'classified' ? <ClassifiedDetail post={post} related={related} /> : null}
         {task === 'image' ? <ImageDetail post={post} related={related} /> : null}
@@ -126,7 +125,7 @@ export function TaskDetailView({ task, post, related, comments = [] }: { task: T
 function BackLink({ task }: { task: TaskKey }) {
   const taskConfig = getTaskConfig(task)
   return (
-    <Link href={taskConfig?.route || '/'} className="inline-flex items-center gap-2 border border-[var(--editable-border)] bg-white/70 px-4 py-2 text-xs font-black uppercase tracking-[0.18em]">
+    <Link href={taskConfig?.route || '/'} className="inline-flex items-center gap-2 border border-[var(--slot4-page-text)] bg-[var(--slot4-panel-bg)] px-4 py-2 text-xs font-black uppercase tracking-[0.18em] transition-colors hover:bg-[var(--slot4-page-text)] hover:text-[var(--slot4-page-bg)]">
       <ArrowLeft className="h-4 w-4" /> Back to {taskConfig?.label || 'posts'}
     </Link>
   )
@@ -135,13 +134,13 @@ function BackLink({ task }: { task: TaskKey }) {
 function ArticleDetail({ post, related, comments }: { post: SitePost; related: SitePost[]; comments: Array<{ id: string; name: string; comment: string; createdAt: string }> }) {
   const images = getImages(post)
   return (
-    <section className="mx-auto max-w-[var(--editable-container)] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+    <section className="mx-auto max-w-[var(--editable-container)] px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
       <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_320px]">
         <article className="min-w-0">
-          <div className="border-b border-[var(--detail-text)] pb-8">
+          <div className="border-b border-[var(--slot4-page-text)] bg-[var(--slot4-panel-bg)] p-6 outline outline-1 outline-[var(--slot4-accent)] sm:p-10">
             <BackLink task="article" />
             <p className="mt-8 text-[11px] font-black uppercase tracking-[0.28em] text-[var(--detail-accent)]">{categoryOf(post, 'Article')}</p>
-            <h1 className="mt-5 max-w-4xl font-serif text-6xl font-normal leading-[0.96] sm:text-7xl lg:text-8xl">{post.title}</h1>
+            <h1 className="mt-5 max-w-4xl font-serif text-5xl font-normal leading-[0.96] text-[var(--slot4-accent)] sm:text-6xl lg:text-7xl">{post.title}</h1>
            
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/article" className="inline-flex items-center gap-2 border border-[var(--detail-text)] bg-[var(--detail-text)] px-5 py-3 text-xs font-black uppercase tracking-[0.2em] text-[var(--detail-bg)]">All articles <ArrowLeft className="h-4 w-4 rotate-180" /></Link>
@@ -150,7 +149,7 @@ function ArticleDetail({ post, related, comments }: { post: SitePost; related: S
             </div>
           </div>
 
-          {images[0] ? <img src={images[0]} alt="" className="mt-10 max-h-[680px] w-full object-cover" /> : null}
+          {images[0] ? <img src={images[0]} alt="" className="mt-10 aspect-[16/10] max-h-[680px] w-full bg-[var(--slot4-media-bg)] object-cover" /> : null}
           <BodyContent post={post} />
           <EditableComments slug={post.slug} comments={comments} />
         </article>
